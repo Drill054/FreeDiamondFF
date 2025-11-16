@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login 2025</title>
+  <style>
+    body{font-family:system-ui,Arial;margin:0;background:#f3f4f6;display:flex;justify-content:center;align-items:center;height:100vh}
+    .page{display:none;width:100%;max-width:380px;background:white;padding:24px;border-radius:16px;box-shadow:0 0 20px rgba(0,0,0,0.1)}
+    .show{display:block}
+    button{width:100%;padding:14px;margin-top:12px;border:none;border-radius:10px;font-size:16px;cursor:pointer}
+    .fb{background:#1877f2;color:white}
+    .gg{background:white;color:#444;border:1px solid #ccc}
+    h2{text-align:center;margin-bottom:20px}
+    input{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin-top:10px}
+    .back{margin-top:20px;background:#eee}
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: PILIH LOGIN -->
+  <div id="page-home" class="page show">
+    <h2>Pilih Metode Login</h2>
+    <button class="fb" onclick="go('page-fb')">Login dengan Facebook</button>
+    <button class="gg" onclick="go('page-google')">Login dengan Google</button>
+  </div>
+
+  <!-- PAGE 2: LOGIN FACEBOOK 2025 -->
+  <div id="page-fb" class="page">
+    <h2>Facebook Login 2025</h2>
+    <input type="text" placeholder="Nomor / Email" />
+    <input type="password" placeholder="Kata Sandi" />
+    <button class="fb">Masuk</button>
+    <button class="back" onclick="go('page-home')">Kembali</button>
+  </div>
+
+  <!-- PAGE 3: LOGIN GOOGLE 2025 -->
+  <div id="page-google" class="page">
+    <h2>Google Login 2025</h2>
+    <input type="text" placeholder="Email Anda" />
+    <button class="gg">Lanjutkan</button>
+    <button class="back" onclick="go('page-home')">Kembali</button>
+  </div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+}
+</script>
+
+</body>
+</html>
