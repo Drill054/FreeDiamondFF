@@ -1,0 +1,9 @@
+body {
+  font-family: 'Inter', sans-serif; /* Anda bisa mengganti font ini */
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Styling dasar Tailwind CSS biasanya sudah disediakan oleh Next.js default setup,
+   namun ini untuk memastikan struktur yang baik. */
